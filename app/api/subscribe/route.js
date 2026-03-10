@@ -1,11 +1,11 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+export const dynamic = 'force-dynamic'
 
 export async function POST(request) {
+  const resend = new Resend(process.env.RESEND_API_KEY)
   try {
     const { name, email } = await request.json()
-
     await resend.emails.send({
       from: 'Ethos & Statute <onboarding@resend.dev>',
       to: email,
@@ -19,7 +19,7 @@ export async function POST(request) {
           </div>
           <div style="padding:48px 40px; background:white;">
             <h2 style="font-size:24px; font-weight:700; color:#0d1b2a; margin:0 0 16px; letter-spacing:-0.02em;">
-              Welcome, ${name}. 
+              Welcome, ${name}.
             </h2>
             <p style="font-size:16px; color:#555; line-height:1.8; margin:0 0 20px;">
               You're now part of a growing community of readers who believe the law is too important to leave to lawyers alone.
@@ -39,7 +39,6 @@ export async function POST(request) {
         </div>
       `
     })
-
     return Response.json({ success: true })
   } catch (error) {
     return Response.json({ error: 'Failed to send email' }, { status: 500 })
