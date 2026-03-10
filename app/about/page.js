@@ -10,6 +10,15 @@ export default function About() {
         .nav-link { display:flex; align-items:center; height:64px; padding:0 18px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500; color:#0d1b2a; border-bottom:2px solid transparent; transition:all 0.2s; }
         .nav-link:hover { color:#c0392b; border-bottom-color:#c0392b; }
         .value-card:hover { background:#ffffff !important; }
+        @media (max-width: 768px) {
+  nav { padding: 0 16px !important; }
+  nav > div { display: none; }
+  .nav-link { display: none; }
+  h1 { font-size: 32px !important; }
+  div[style*="max-width:800"] { padding: 32px 16px !important; }
+  div[style*="max-width: 800"] { padding: 32px 16px !important; }
+  div[style*="padding:56"] { padding: 24px 16px !important; }
+      }
       `}</style>
 
       {/* Nav */}

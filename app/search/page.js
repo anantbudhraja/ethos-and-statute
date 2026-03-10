@@ -36,6 +36,15 @@ export default function Search() {
         .nav-link:hover { color:#c0392b; border-bottom-color:#c0392b; }
         .result-card { background:white; padding:32px; border-left:3px solid transparent; transition:all 0.2s; cursor:pointer; border-bottom:1px solid rgba(13,27,42,0.08); }
         .result-card:hover { border-left-color:#c0392b; background:#fff; }
+        @media (max-width: 768px) {
+  nav { padding: 0 16px !important; }
+  nav > div { display: none; }
+  .nav-link { display: none; }
+  h1 { font-size: 32px !important; }
+  div[style*="max-width:800"] { padding: 32px 16px !important; }
+  div[style*="max-width: 800"] { padding: 32px 16px !important; }
+  div[style*="padding:56"] { padding: 24px 16px !important; }
+}
       `}</style>
 
       {/* Nav */}

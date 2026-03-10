@@ -41,6 +41,15 @@ export default function Subscribe() {
         .sub-input { width:100%; padding:16px 20px; font-family:'DM Sans',sans-serif; font-size:15px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:white; outline:none; transition:border 0.2s; }
         .sub-input:focus { border-color:#c0392b; }
         .sub-input::placeholder { color:rgba(255,255,255,0.35); }
+        @media (max-width: 768px) {
+  nav { padding: 0 16px !important; }
+  nav > div { display: none; }
+  .nav-link { display: none; }
+  h1 { font-size: 32px !important; }
+  div[style*="max-width:800"] { padding: 32px 16px !important; }
+  div[style*="max-width: 800"] { padding: 32px 16px !important; }
+  div[style*="padding:56"] { padding: 24px 16px !important; }
+}
       `}</style>
 
       {/* Nav */}

@@ -13,6 +13,15 @@ export default function Terms() {
         p { font-size:15px; color:#555; line-height:1.85; margin-bottom:16px; }
         ul { padding-left:24px; margin-bottom:16px; }
         li { font-size:15px; color:#555; line-height:1.85; margin-bottom:8px; }
+        @media (max-width: 768px) {
+  nav { padding: 0 16px !important; }
+  nav > div { display: none; }
+  .nav-link { display: none; }
+  h1 { font-size: 32px !important; }
+  div[style*="max-width:800"] { padding: 32px 16px !important; }
+  div[style*="max-width: 800"] { padding: 32px 16px !important; }
+  div[style*="padding:56"] { padding: 24px 16px !important; }
+}
       `}</style>
 
       <nav style={{ background:"white", borderBottom:"1px solid rgba(13,27,42,0.12)", position:"sticky", top:0, zIndex:100, padding:"0 40px", display:"flex", alignItems:"stretch", height:64 }}>

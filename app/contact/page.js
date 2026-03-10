@@ -26,6 +26,15 @@ export default function Contact() {
         .form-input { width:100%; padding:14px 18px; font-family:'DM Sans',sans-serif; font-size:14px; background:white; border:1px solid rgba(13,27,42,0.15); color:#1a1a1a; outline:none; transition:border 0.2s; }
         .form-input:focus { border-color:#c0392b; }
         .form-input::placeholder { color:#9a9590; }
+        @media (max-width: 768px) {
+  nav { padding: 0 16px !important; }
+  nav > div { display: none; }
+  .nav-link { display: none; }
+  h1 { font-size: 32px !important; }
+  div[style*="max-width:800"] { padding: 32px 16px !important; }
+  div[style*="max-width: 800"] { padding: 32px 16px !important; }
+  div[style*="padding:56"] { padding: 24px 16px !important; }
+      }
       `}</style>
 
       <nav style={{ background:"white", borderBottom:"1px solid rgba(13,27,42,0.12)", position:"sticky", top:0, zIndex:100, padding:"0 40px", display:"flex", alignItems:"stretch", height:64 }}>
