@@ -55,11 +55,14 @@ export default async function Home() {
           {["Latest","Constitutional","Corporate","Criminal","IP & Tech","Opinion","Deep Reads"].map(item => (
             <a key={item} href="#" className="nav-link">{item}</a>
           ))}
-        </div>
         <div style={{ display:"flex", alignItems:"center", gap:16, marginLeft:"auto" }}>
-          <Link href="/subscribe" style={{ background:"#c0392b", color:"white", fontSize:11, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", padding:"8px 20px", cursor:"pointer" }}>
-  Subscribe
-</Link>
+  <Link href="/search" style={{ width:32, height:32, border:"1px solid #e8e4dc", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0d1b2a" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+  </Link>
+  <Link href="/subscribe" style={{ background:"#c0392b", color:"white", fontSize:11, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", padding:"8px 20px", cursor:"pointer" }}>
+    Subscribe
+  </Link>
+</div>
         </div>
       </nav>
 
