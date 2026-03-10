@@ -55,23 +55,49 @@ export default function About() {
       </div>
 
       {/* Mission */}
-      <div style={{ maxWidth:800, margin:"0 auto", padding:"80px 40px" }}>
-        <div style={{ background:"white", padding:64, borderLeft:"4px solid #c0392b" }}>
-          <div style={{ fontSize:11, letterSpacing:"0.18em", textTransform:"uppercase", color:"#c0392b", fontWeight:600, marginBottom:24 }}>Our Mission</div>
-          <p style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(20px,2.5vw,28px)", fontWeight:700, fontStyle:"italic", lineHeight:1.5, color:"#0d1b2a", marginBottom:32 }}>
-            "To make the law legible — not just to lawyers, but to citizens, journalists, students, and anyone who believes that justice is everyone's business."
-          </p>
-          <p style={{ fontSize:16, color:"#555", lineHeight:1.85, marginBottom:20 }}>
-            The Indian legal system produces thousands of judgments, statutes, and policy changes every year. Most of them go unreported, misunderstood, or buried in jargon. Ethos & Statute exists to change that.
-          </p>
-          <p style={{ fontSize:16, color:"#555", lineHeight:1.85, marginBottom:20 }}>
-            We write for the curious — people who want to understand not just what the law says, but why it matters, who it affects, and where it falls short. Our writers are lawyers, academics, journalists and practitioners who believe that rigour and readability are not opposites.
-          </p>
-          <p style={{ fontSize:16, color:"#555", lineHeight:1.85 }}>
-            Every article on this platform is written with one question in mind: <strong style={{ color:"#0d1b2a" }}>would a thoughtful, curious non-lawyer understand this — and care about it?</strong>
-          </p>
-        </div>
-      </div>
+<div style={{ maxWidth:800, margin:"0 auto", padding:"64px 40px" }}>
+  <div style={{ background:"white", padding:56, borderLeft:"4px solid #c0392b" }}>
+    <p style={{ fontSize:16, color:"#555", lineHeight:1.9, marginBottom:24 }}>
+      The idea for Ethos & Statute began quietly, sometime during my years at the West Bengal National University of Juridical Sciences. Like most law students, I wrote blog pieces with great enthusiasm and sent them off to established legal websites. And then I waited. And waited some more. Often, by the time the piece was finally published, the moment had already passed. Because legal news, for all its gravity, still obeys the ruthless rhythm of the news cycle. A week, perhaps two, and the conversation has moved on.
+    </p>
+    <p style={{ fontSize:16, color:"#555", lineHeight:1.9, marginBottom:24 }}>
+      I remember thinking then that law deserved a space where ideas could travel faster, where commentary could keep pace with the moment it was responding to.
+    </p>
+    <p style={{ fontSize:16, color:"#555", lineHeight:1.9, marginBottom:24 }}>
+      That thought returned to me years later, once I had stepped outside the walls of law school. I discovered brilliant business and financial platforms such as Finshots and The Ken. They had mastered something remarkable: the art of making complex financial developments readable, engaging, and intelligible to anyone curious enough to learn.
+    </p>
+    <p style={{ fontSize:16, color:"#555", lineHeight:1.9, marginBottom:24 }}>
+      The contrast with much of legal writing was difficult to ignore. Too often, legal blogs fell into familiar patterns. Some were dense with impenetrable jargon. Others reproduced, with minor edits, the old projects of law students (we have all done this at some point). And many were simply too difficult for a curious reader without legal training to follow.
+    </p>
+    <p style={{ fontSize:16, color:"#555", lineHeight:1.9, marginBottom:24 }}>
+      Yet law shapes every aspect of public life. It intersects with politics, economics, technology, culture, and everyday decisions. Why should the conversation about it remain confined to a small professional circle?
+    </p>
+    <p style={{ fontSize:16, color:"#555", lineHeight:1.9, marginBottom:24, fontWeight:600, color:"#0d1b2a" }}>
+      Ethos & Statute is an attempt to change that.
+    </p>
+    <p style={{ fontSize:16, color:"#555", lineHeight:1.9, marginBottom:24 }}>
+      This blog exists to make law accessible without making it shallow. To write about legal developments with clarity and curiosity. To explain without condescension. To analyse without drowning the reader in technicalities.
+    </p>
+    <p style={{ fontSize:16, color:"#555", lineHeight:1.9, marginBottom:24, fontStyle:"italic" }}>
+      And yes, to write a blog in the age of reels.
+    </p>
+    <p style={{ fontSize:16, color:"#555", lineHeight:1.9, marginBottom:24 }}>
+      Because while short videos may dominate our attention today, the habit of reading remains essential to thinking clearly. Ideas require a little space to breathe. Not pages of dense prose, but thoughtful pieces that can be read in a few minutes and remembered long after.
+    </p>
+    <p style={{ fontSize:16, color:"#555", lineHeight:1.9, marginBottom:24 }}>
+      The writing here will aim to be simple, but not simplistic. Impartial, yet unafraid of opinion. Analytical, but grounded in the real world.
+    </p>
+    <p style={{ fontSize:16, color:"#555", lineHeight:1.9, marginBottom:24 }}>
+      Most importantly, it will treat law not as an isolated discipline but as something deeply intertwined with everything else that shapes our lives.
+    </p>
+    <p style={{ fontSize:16, color:"#555", lineHeight:1.9, marginBottom:24 }}>
+      Ethos & Statute is not meant only for lawyers. It is meant for anyone interested in understanding how law moves through the world we inhabit.
+    </p>
+    <p style={{ fontSize:18, color:"#0d1b2a", lineHeight:1.9, fontFamily:"'Playfair Display',serif", fontWeight:700, fontStyle:"italic" }}>
+      One thoughtful piece at a time.
+    </p>
+  </div>
+</div>
 
       {/* Values */}
       <div style={{ background:"#0d1b2a", padding:"80px 40px" }}>
@@ -87,7 +113,7 @@ export default function About() {
               { num:"06", title:"Accountability", desc:"When we get something wrong, we correct it — openly, promptly, and without defensiveness." },
             ].map(v => (
               <div key={v.num} className="value-card" style={{ background:"#0d1b2a", padding:"40px 32px", transition:"background 0.2s", cursor:"default" }}>
-                <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:48, color:"rgba(255,255,255,0.06)", lineHeight:1, marginBottom:16 }}>{v.num}</div>
+                <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:48, color:"#c0392b", lineHeight:1, marginBottom:16 }}>{v.num}</div>
                 <div style={{ fontFamily:"'Playfair Display',serif", fontSize:18, fontWeight:700, color:"white", marginBottom:10 }}>{v.title}</div>
                 <div style={{ fontSize:13, color:"rgba(255,255,255,0.5)", lineHeight:1.7 }}>{v.desc}</div>
               </div>

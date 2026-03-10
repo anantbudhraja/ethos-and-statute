@@ -193,7 +193,7 @@ export default async function Home() {
         <div style={{ maxWidth:1280, margin:"0 auto", padding:"0 40px", display:"flex", alignItems:"center", gap:80, position:"relative", zIndex:1 }}>
           <div style={{ flex:1 }}>
             <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(28px,3.5vw,44px)", fontWeight:900, color:"white", lineHeight:1.15, letterSpacing:"-0.03em", marginBottom:12 }}>
-              Law is too important<br/>to leave to <em>lawyers alone.</em>
+              Law is too important<br/>to leave it to <em>lawyers alone.</em>
             </h2>
             <p style={{ fontSize:14, color:"rgba(255,255,255,0.75)", lineHeight:1.65, maxWidth:360 }}>
               Join readers who get sharp, accessible legal analysis in their inbox every week.
