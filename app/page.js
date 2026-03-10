@@ -57,9 +57,9 @@ export default async function Home() {
           ))}
         </div>
         <div style={{ display:"flex", alignItems:"center", gap:16, marginLeft:"auto" }}>
-          <button style={{ background:"#c0392b", color:"white", fontSize:11, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", padding:"8px 20px", border:"none", cursor:"pointer" }}>
-            <Link href="/subscribe" ...>Subscribe</Link>
-          </button>
+          <Link href="/subscribe" style={{ background:"#c0392b", color:"white", fontSize:11, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", padding:"8px 20px", cursor:"pointer" }}>
+  Subscribe
+</Link>
         </div>
       </nav>
 
