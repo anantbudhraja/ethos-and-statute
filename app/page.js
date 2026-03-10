@@ -182,23 +182,21 @@ export default function Home() {
             <span style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:28, letterSpacing:"0.08em", color:"#0d1b2a" }}>Latest Articles</span>
             <span style={{ fontSize:11, color:"#9a9590", letterSpacing:"0.1em", textTransform:"uppercase" }}>— {articles.length} stories</span>
           </div>
-          {grid.length === 0 ? null :
-            </div>
-          ) : (
-            <div className="articles-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", border:"1px solid rgba(13,27,42,0.12)" }}>
-              {grid.map((a, i) => (
-                <Link href={`/article/${a.slug?.current}`} key={a._id} className="article-card" style={{ padding:28, borderRight: i % 3 !== 2 ? "1px solid rgba(13,27,42,0.12)" : "none", borderBottom:"1px solid rgba(13,27,42,0.12)", display:"flex", flexDirection:"column", gap:14, background:"#f7f5f0" }}>
-                  <div style={{ fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:600, color:"#c0392b" }}>{a.category}</div>
-                  <div style={{ fontFamily:"'Playfair Display',serif", fontSize:19, fontWeight:700, lineHeight:1.3, color:"#0d1b2a", flex:1 }}>{a.title}</div>
-                  <div style={{ fontSize:13, color:"#9a9590", lineHeight:1.65 }}>{a.excerpt}</div>
-                  <div style={{ display:"flex", justifyContent:"space-between", fontSize:11, color:"#9a9590", textTransform:"uppercase", letterSpacing:"0.05em", borderTop:"1px solid rgba(13,27,42,0.12)", paddingTop:14 }}>
-                    <span><strong style={{ color:"#0d1b2a" }}>{a.author}</strong></span>
-                    <span>⏱ {a.readTime}</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
+          {grid.length > 0 && (
+  <div className="articles-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", border:"1px solid rgba(13,27,42,0.12)" }}>
+    {grid.map((a, i) => (
+      <Link href={`/article/${a.slug?.current}`} key={a._id} className="article-card" style={{ padding:28, borderRight: i % 3 !== 2 ? "1px solid rgba(13,27,42,0.12)" : "none", borderBottom:"1px solid rgba(13,27,42,0.12)", display:"flex", flexDirection:"column", gap:14, background:"#f7f5f0" }}>
+        <div style={{ fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:600, color:"#c0392b" }}>{a.category}</div>
+        <div style={{ fontFamily:"'Playfair Display',serif", fontSize:19, fontWeight:700, lineHeight:1.3, color:"#0d1b2a", flex:1 }}>{a.title}</div>
+        <div style={{ fontSize:13, color:"#9a9590", lineHeight:1.65 }}>{a.excerpt}</div>
+        <div style={{ display:"flex", justifyContent:"space-between", fontSize:11, color:"#9a9590", textTransform:"uppercase", letterSpacing:"0.05em", borderTop:"1px solid rgba(13,27,42,0.12)", paddingTop:14 }}>
+          <span><strong style={{ color:"#0d1b2a" }}>{a.author}</strong></span>
+          <span>⏱ {a.readTime}</span>
+        </div>
+      </Link>
+    ))}
+  </div>
+)}
         </div>
       </section>
 
