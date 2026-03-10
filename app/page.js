@@ -182,9 +182,7 @@ export default function Home() {
             <span style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:28, letterSpacing:"0.08em", color:"#0d1b2a" }}>Latest Articles</span>
             <span style={{ fontSize:11, color:"#9a9590", letterSpacing:"0.1em", textTransform:"uppercase" }}>— {articles.length} stories</span>
           </div>
-          {grid.length === 0 ? (
-            <div style={{ padding:48, textAlign:"center", color:"#9a9590", fontFamily:"'Playfair Display',serif", fontSize:20 }}>
-              No articles yet — publish your first one in the Studio!
+          {grid.length === 0 ? null :
             </div>
           ) : (
             <div className="articles-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", border:"1px solid rgba(13,27,42,0.12)" }}>
