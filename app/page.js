@@ -50,6 +50,27 @@ export default async function Home() {
   .newsletter-form input { width: 100% !important; }
   .footer-cols { flex-direction: column !important; }
   .footer-cols > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.06) !important; padding: 24px 16px !important; }
+  @media (max-width: 768px) {
+  .desktop-nav { display: none !important; }
+  .mobile-nav { display: flex !important; }
+  .hero-split { flex-direction: column !important; min-height: auto !important; }
+  .hero-left { width: 100% !important; padding: 40px 20px !important; min-height: auto !important; }
+  .hero-right { width: 100% !important; min-height: 280px !important; }
+  .articles-grid { grid-template-columns: 1fr !important; padding: 32px 20px !important; gap: 24px !important; }
+  .deep-read { flex-direction: column !important; }
+  .deep-read-img { width: 100% !important; min-height: 240px !important; }
+  .deep-read-content { padding: 32px 20px !important; }
+  .categories-grid { grid-template-columns: 1fr 1fr !important; padding: 32px 20px !important; gap: 12px !important; }
+  .opinion-layout { flex-direction: column !important; gap: 0 !important; }
+  .newsletter-band { padding: 48px 20px !important; }
+  .newsletter-band h2 { font-size: 28px !important; }
+  .newsletter-form { flex-direction: column !important; max-width: 100% !important; }
+  .newsletter-form input { width: 100% !important; }
+  .footer-cols { flex-direction: column !important; }
+  .footer-cols > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.06) !important; padding: 24px 20px !important; }
+  body { overflow-x: hidden !important; }
+  * { max-width: 100vw; }
+}
       `}</style>
 
       {/* Ticker */}
@@ -64,24 +85,39 @@ export default async function Home() {
       </div>
 
       {/* Nav */}
-      <nav style={{ background:"white", borderBottom:"1px solid rgba(13,27,42,0.12)", position:"sticky", top:0, zIndex:100, padding:"0 40px", display:"flex", alignItems:"stretch", height:64 }}>
-        <Link href="/" style={{ display:"flex", alignItems:"center", fontFamily:"'Playfair Display',serif", fontWeight:900, fontSize:20, color:"#0d1b2a", letterSpacing:"-0.02em", paddingRight:40, borderRight:"1px solid rgba(13,27,42,0.12)", marginRight:32, whiteSpace:"nowrap" }}>
-          Ethos <em style={{ fontStyle:"italic", color:"#c0392b", margin:"0 4px" }}>&</em> Statute
-        </Link>
-        <div style={{ display:"flex", alignItems:"center", flex:1 }}>
-          {["Latest","Constitutional","Corporate","Criminal","IP & Tech","Opinion","Deep Reads"].map(item => (
-            <a key={item} href="#" className="nav-link">{item}</a>
-          ))}
-        <div style={{ display:"flex", alignItems:"center", gap:16, marginLeft:"auto" }}>
-  <Link href="/search" style={{ width:32, height:32, border:"1px solid #e8e4dc", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}>
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0d1b2a" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+<nav style={{ background:"white", borderBottom:"1px solid rgba(13,27,42,0.12)", position:"sticky", top:0, zIndex:100, padding:"0 20px", display:"flex", alignItems:"center", height:64, overflow:"hidden" }}>
+  {/* Logo */}
+  <Link href="/" style={{ display:"flex", alignItems:"center", fontFamily:"'Playfair Display',serif", fontWeight:900, fontSize:20, color:"#0d1b2a", letterSpacing:"-0.02em", whiteSpace:"nowrap", flexShrink:0 }}>
+    Ethos <em style={{ fontStyle:"italic", color:"#c0392b", margin:"0 4px" }}>&</em> Statute
   </Link>
-  <Link href="/subscribe" style={{ background:"#c0392b", color:"white", fontSize:11, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", padding:"8px 20px", cursor:"pointer" }}>
-    Subscribe
-  </Link>
-</div>
-        </div>
-      </nav>
+
+  {/* Desktop nav links */}
+  <div className="desktop-nav" style={{ display:"flex", alignItems:"center", flex:1, marginLeft:32 }}>
+    {["Latest","Constitutional","Corporate","Criminal","IP & Tech","Opinion","Deep Reads"].map(item => (
+      <a key={item} className="nav-link" href="/">{item}</a>
+    ))}
+  </div>
+
+  {/* Desktop right buttons */}
+  <div className="desktop-nav" style={{ display:"flex", alignItems:"center", gap:16, marginLeft:"auto" }}>
+    <Link href="/search" style={{ width:32, height:32, border:"1px solid #e8e4dc", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0d1b2a" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </Link>
+    <Link href="/subscribe" style={{ background:"#c0392b", color:"white", fontSize:11, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", padding:"8px 20px" }}>
+      Subscribe
+    </Link>
+  </div>
+
+  {/* Mobile right buttons */}
+  <div className="mobile-nav" style={{ display:"none", alignItems:"center", gap:12, marginLeft:"auto" }}>
+    <Link href="/search" style={{ width:32, height:32, border:"1px solid #e8e4dc", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0d1b2a" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </Link>
+    <Link href="/subscribe" style={{ background:"#c0392b", color:"white", fontSize:10, fontWeight:600, letterSpacing:"0.1em", textTransform:"uppercase", padding:"6px 14px", whiteSpace:"nowrap" }}>
+      Subscribe
+    </Link>
+  </div>
+</nav>
 
       {/* Hero */}
       {featured && (
