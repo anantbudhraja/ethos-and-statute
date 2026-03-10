@@ -46,7 +46,7 @@ export default function About() {
             About Us
           </div>
           <h1 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(40px,5vw,72px)", fontWeight:900, lineHeight:1.05, color:"white", letterSpacing:"-0.03em", marginBottom:24 }}>
-            Law is too important to leave to <em style={{ color:"#e74c3c", fontStyle:"italic" }}>lawyers alone.</em>
+            Law is too important to leave it to <em style={{ color:"#e74c3c", fontStyle:"italic" }}>lawyers alone.</em>
           </h1>
           <p style={{ fontSize:18, color:"rgba(255,255,255,0.6)", lineHeight:1.8, maxWidth:640 }}>
             Ethos & Statute was founded on a simple conviction — that legal journalism should be sharp, accessible, and honest. Not a summary of judgments, but a reckoning with what they mean.
