@@ -93,9 +93,17 @@ export default async function Home() {
 
   {/* Desktop nav links */}
   <div className="desktop-nav" style={{ display:"flex", alignItems:"center", flex:1, marginLeft:32 }}>
-    {["Latest","Constitutional","Corporate","Criminal","IP & Tech","Opinion","Deep Reads"].map(item => (
-      <a key={item} className="nav-link" href="/">{item}</a>
-    ))}
+    {[
+  { label:"Our Mission", href:"/about" },
+  { label:"Latest", href:"/" },
+  { label:"Constitutional", href:"/" },
+  { label:"Corporate", href:"/" },
+  { label:"Criminal", href:"/" },
+  { label:"IP & Tech", href:"/" },
+  { label:"Opinion", href:"/" },
+].map(item => (
+  <Link key={item.label} className="nav-link" href={item.href}>{item.label}</Link>
+))}
   </div>
 
   {/* Desktop right buttons */}

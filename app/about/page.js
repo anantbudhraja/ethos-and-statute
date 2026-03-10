@@ -27,9 +27,17 @@ export default function About() {
           Ethos <em style={{ fontStyle:"italic", color:"#c0392b", margin:"0 4px" }}>&</em> Statute
         </Link>
         <div style={{ display:"flex", alignItems:"center", flex:1 }}>
-          {["Latest","Constitutional","Corporate","Criminal","IP & Tech","Opinion","Deep Reads"].map(item => (
-            <a key={item} href="/" className="nav-link">{item}</a>
-          ))}
+          {[
+  { label:"Our Mission", href:"/about" },
+  { label:"Latest", href:"/" },
+  { label:"Constitutional", href:"/" },
+  { label:"Corporate", href:"/" },
+  { label:"Criminal", href:"/" },
+  { label:"IP & Tech", href:"/" },
+  { label:"Opinion", href:"/" },
+].map(item => (
+  <Link key={item.label} className="nav-link" href={item.href}>{item.label}</Link>
+))}
         </div>
         <div style={{ display:"flex", alignItems:"center", gap:16, marginLeft:"auto" }}>
           <Link href="/subscribe" style={{ background:"#c0392b", color:"white", fontSize:11, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", padding:"8px 20px", border:"none", cursor:"pointer" }}>

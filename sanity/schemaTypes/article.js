@@ -23,6 +23,13 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+  name: 'authorBio',
+  title: 'Author Bio',
+  type: 'text',
+  rows: 3,
+  description: 'A brief 1-2 sentence bio shown at the end of the article'
+},
+    {
       name: 'category',
       title: 'Category',
       type: 'string',
