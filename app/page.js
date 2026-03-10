@@ -58,7 +58,7 @@ export default async function Home() {
         </div>
         <div style={{ display:"flex", alignItems:"center", gap:16, marginLeft:"auto" }}>
           <button style={{ background:"#c0392b", color:"white", fontSize:11, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", padding:"8px 20px", border:"none", cursor:"pointer" }}>
-            Subscribe
+            <Link href="/subscribe" ...>Subscribe</Link>
           </button>
         </div>
       </nav>
@@ -174,19 +174,44 @@ export default async function Home() {
               </div>
             </div>
             {[
-              { title:"Coverage", links:["Constitutional Law","Corporate & Business","Criminal Law","IP & Technology","Family & Civil","International Law","Tax & Revenue","Environmental"] },
-              { title:"Sections", links:["Latest Stories","Deep Reads","Opinion","Case Watch","Legislation Tracker","The Glossary","Podcast"] },
-              { title:"About", links:["Our Mission","The Team","Write for Us","Advertise","Contact","Privacy Policy","Terms of Use"] },
-            ].map(col => (
-              <div key={col.title} style={{ padding:"56px 0 56px 48px", borderRight:"1px solid rgba(255,255,255,0.06)" }}>
-                <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(255,255,255,0.3)", marginBottom:20, paddingBottom:10, borderBottom:"1px solid rgba(255,255,255,0.06)" }}>{col.title}</div>
-                <ul style={{ listStyle:"none", display:"flex", flexDirection:"column", gap:10 }}>
-                  {col.links.map(l => (
-                    <li key={l}><a href="#" style={{ fontSize:13, color:"rgba(255,255,255,0.55)", display:"flex", alignItems:"center", gap:6 }}><span style={{ fontSize:10, color:"rgba(255,255,255,0.2)" }}>—</span>{l}</a></li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+              { title:"Coverage", links:[
+    {name:"Constitutional Law", href:"/?category=Constitutional Law"},
+    {name:"Corporate & Business", href:"/?category=Corporate & Business"},
+    {name:"Criminal Law", href:"/?category=Criminal Law"},
+    {name:"IP & Technology", href:"/?category=IP & Technology"},
+    {name:"Family & Civil", href:"/?category=Family & Civil"},
+    {name:"International Law", href:"/?category=International Law"},
+    {name:"Tax & Revenue", href:"/?category=Tax & Revenue"},
+    {name:"Environmental", href:"/?category=Environmental Law"},
+  ]},
+  { title:"Sections", links:[
+    {name:"Latest Stories", href:"/"},
+    {name:"Opinion", href:"/?category=Opinion"},
+    {name:"Deep Reads", href:"/"},
+    {name:"All Articles", href:"/"},
+  ]},
+  { title:"About", links:[
+    {name:"Our Mission", href:"/about"},
+    {name:"The Team", href:"/about"},
+    {name:"Write for Us", href:"/contact"},
+    {name:"Contact", href:"/contact"},
+    {name:"Privacy Policy", href:"/privacy"},
+    {name:"Terms of Use", href:"/terms"},
+  ]},
+].map(col => (
+  <div key={col.title} style={{ padding:"56px 0 56px 48px", borderRight:"1px solid rgba(255,255,255,0.06)" }}>
+    <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(255,255,255,0.3)", marginBottom:20, paddingBottom:10, borderBottom:"1px solid rgba(255,255,255,0.06)" }}>{col.title}</div>
+    <ul style={{ listStyle:"none", display:"flex", flexDirection:"column", gap:10 }}>
+      {col.links.map(l => (
+        <li key={l.name}>
+          <Link href={l.href} style={{ fontSize:13, color:"rgba(255,255,255,0.55)", display:"flex", alignItems:"center", gap:6 }}>
+            <span style={{ fontSize:10, color:"rgba(255,255,255,0.2)" }}>—</span>{l.name}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </div>
+))}
           </div>
           <div style={{ display:"flex", justifyContent:"space-between", padding:"20px 0", fontSize:11, color:"rgba(255,255,255,0.25)" }}>
             <span>© 2026 Ethos & Statute. All rights reserved.</span>
