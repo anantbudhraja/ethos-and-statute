@@ -108,8 +108,8 @@ export default function About() {
               { num:"01", title:"Clarity over Complexity", desc:"We translate legal language into plain English — without losing precision or depth." },
               { num:"02", title:"Independence", desc:"We have no political affiliations, no corporate sponsors, and no agenda other than honest reporting." },
               { num:"03", title:"Access to Justice", desc:"We believe legal literacy is a civic right. Our core content will always be free." },
-              { num:"04", title:"Rigour", desc:"Every claim we make is sourced. Every judgment we cite is read — not summarised from a press release." },
-              { num:"05", title:"Diversity of Voice", desc:"Indian law is argued in dozens of languages and across wildly different contexts. We aim to reflect that." },
+              { num:"04", title:"Rigour", desc:"Every claim we make is sourced. Every judgment we cite is read, not summarised by AI." },
+              { num:"05", title:"The Urgency of Commentary", desc:"We aim to write about the law while the conversation is still unfolding." },
               { num:"06", title:"Accountability", desc:"When we get something wrong, we correct it — openly, promptly, and without defensiveness." },
             ].map(v => (
               <div key={v.num} className="value-card" style={{ background:"#0d1b2a", padding:"40px 32px", transition:"background 0.2s", cursor:"default" }}>
