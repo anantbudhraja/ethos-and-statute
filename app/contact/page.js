@@ -28,7 +28,6 @@ export default function Contact() {
         .form-input::placeholder { color:#9a9590; }
       `}</style>
 
-      {/* Nav */}
       <nav style={{ background:"white", borderBottom:"1px solid rgba(13,27,42,0.12)", position:"sticky", top:0, zIndex:100, padding:"0 40px", display:"flex", alignItems:"stretch", height:64 }}>
         <Link href="/" style={{ display:"flex", alignItems:"center", fontFamily:"'Playfair Display',serif", fontWeight:900, fontSize:20, color:"#0d1b2a", letterSpacing:"-0.02em", paddingRight:40, borderRight:"1px solid rgba(13,27,42,0.12)", marginRight:32, whiteSpace:"nowrap" }}>
           Ethos <em style={{ fontStyle:"italic", color:"#c0392b", margin:"0 4px" }}>&</em> Statute
@@ -45,7 +44,6 @@ export default function Contact() {
         </div>
       </nav>
 
-      {/* Header */}
       <div style={{ background:"#0d1b2a", padding:"100px 40px" }}>
         <div style={{ maxWidth:800, margin:"0 auto" }}>
           <div style={{ fontSize:11, letterSpacing:"0.18em", textTransform:"uppercase", color:"#e74c3c", fontWeight:500, display:"flex", alignItems:"center", gap:8, marginBottom:24 }}>
@@ -61,10 +59,7 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Content */}
       <div style={{ maxWidth:1100, margin:"0 auto", padding:"80px 40px", display:"grid", gridTemplateColumns:"1fr 1.5fr", gap:64 }}>
-
-        {/* Left Info */}
         <div style={{ display:"flex", flexDirection:"column", gap:40 }}>
           {[
             { title:"Write for Us", desc:"Have a legal story worth telling? We welcome contributions from lawyers, academics and journalists.", link:"Pitch a story →" },
@@ -77,18 +72,16 @@ export default function Contact() {
               <div style={{ fontSize:12, fontWeight:600, letterSpacing:"0.1em", textTransform:"uppercase", color:"#c0392b" }}>{item.link}</div>
             </div>
           ))}
-
           <div>
             <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", color:"#9a9590", marginBottom:12 }}>Follow Us</div>
             <div style={{ display:"flex", gap:10 }}>
               {["X","in","YT","IG"].map(s => (
-                <a key={s} href="#" style={{ width:36, height:36, border:"1px solid rgba(13,27,42,0.15)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, color:"#0d1b2a", fontWeight:700, transition:"all 0.2s" }}>{s}</a>
+                <a key={s} href="#" style={{ width:36, height:36, border:"1px solid rgba(13,27,42,0.15)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, color:"#0d1b2a", fontWeight:700 }}>{s}</a>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Right Form */}
         <div>
           {submitted ? (
             <div style={{ background:"white", padding:64, textAlign:"center", border:"1px solid rgba(13,27,42,0.08)" }}>
@@ -100,7 +93,7 @@ export default function Contact() {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} style={{ background:"white", padding:48, border:"1px solid rgba(13,27,42,0.08)", display:"flex", flexDirection:"column", gap:20 }}>
+            <div style={{ background:"white", padding:48, border:"1px solid rgba(13,27,42,0.08)", display:"flex", flexDirection:"column", gap:20 }}>
               <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:24, letterSpacing:"0.08em", color:"#0d1b2a", paddingBottom:16, borderBottom:"2px solid #0d1b2a" }}>Send us a message</div>
               <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
                 <div>
@@ -108,4 +101,39 @@ export default function Contact() {
                   <input required className="form-input" type="text" placeholder="Full name" value={formData.name} onChange={e => setFormData({...formData, name:e.target.value})} />
                 </div>
                 <div>
-                  <label style={{ fontSize:11, letterSpacing
+                  <label style={{ fontSize:11, letterSpacing:"0.12em", textTransform:"uppercase", color:"#9a9590", display:"block", marginBottom:6 }}>Email Address *</label>
+                  <input required className="form-input" type="email" placeholder="your@email.com" value={formData.email} onChange={e => setFormData({...formData, email:e.target.value})} />
+                </div>
+              </div>
+              <div>
+                <label style={{ fontSize:11, letterSpacing:"0.12em", textTransform:"uppercase", color:"#9a9590", display:"block", marginBottom:6 }}>Subject *</label>
+                <select className="form-input" value={formData.subject} onChange={e => setFormData({...formData, subject:e.target.value})} style={{ appearance:"none", cursor:"pointer" }}>
+                  <option value="">Select a subject</option>
+                  <option>Write for Us</option>
+                  <option>Report an Error</option>
+                  <option>Partnership</option>
+                  <option>Feedback</option>
+                  <option>General Enquiry</option>
+                </select>
+              </div>
+              <div>
+                <label style={{ fontSize:11, letterSpacing:"0.12em", textTransform:"uppercase", color:"#9a9590", display:"block", marginBottom:6 }}>Message *</label>
+                <textarea className="form-input" rows={6} placeholder="Tell us what's on your mind..." value={formData.message} onChange={e => setFormData({...formData, message:e.target.value})} style={{ resize:"vertical" }} />
+              </div>
+              <button onClick={handleSubmit} disabled={loading} style={{ background: loading ? "#9a9590" : "#c0392b", color:"white", border:"none", padding:"16px 32px", fontSize:12, fontWeight:700, letterSpacing:"0.12em", textTransform:"uppercase", cursor: loading ? "not-allowed" : "pointer", alignSelf:"flex-start" }}>
+                {loading ? "Sending..." : "Send Message →"}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <footer style={{ background:"#0d1b2a", color:"white", padding:"40px", textAlign:"center" }}>
+        <div style={{ fontFamily:"'Playfair Display',serif", fontSize:20, fontWeight:900, marginBottom:8 }}>
+          Ethos <em style={{ color:"#e74c3c" }}>&</em> Statute
+        </div>
+        <div style={{ fontSize:12, color:"rgba(255,255,255,0.3)" }}>© 2026 Ethos & Statute. All rights reserved.</div>
+      </footer>
+    </main>
+  )
+}
