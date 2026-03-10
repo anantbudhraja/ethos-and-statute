@@ -95,6 +95,8 @@ export default function About() {
     </p>
     <p style={{ fontSize:18, color:"#0d1b2a", lineHeight:1.9, fontFamily:"'Playfair Display',serif", fontWeight:700, fontStyle:"italic" }}>
       One thoughtful piece at a time.
+
+      - Praneeta Tiwari, Founder, Ethos & Statute
     </p>
   </div>
 </div>
