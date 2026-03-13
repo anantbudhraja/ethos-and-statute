@@ -67,11 +67,43 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      name: 'body',
-      title: 'Body (full article)',
-      type: 'array',
-      of: [{ type: 'block' }]
-    },
+  name: 'mainImage',
+  title: 'Main Article Image',
+  type: 'image',
+  options: { hotspot: true },
+  fields: [
+    {
+      name: 'alt',
+      title: 'Alt Text',
+      type: 'string',
+      description: 'Describe the image for accessibility'
+    }
+  ]
+},
+  {
+  name: 'body',
+  title: 'Body (full article)',
+  type: 'array',
+  of: [
+    { type: 'block' },
+    {
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string'
+        },
+        {
+          name: 'caption',
+          title: 'Caption',
+          type: 'string'
+        }
+      ]
+    }
+  ]
+},
     {
       name: 'featured',
       title: 'Featured Article?',

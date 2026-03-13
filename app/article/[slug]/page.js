@@ -5,9 +5,11 @@ async function getArticle(slug) {
   return await client.fetch(`
     *[_type == "article" && slug.current == $slug][0] {
       _id, title, slug, author, authorBio, category, excerpt, readTime, publishedAt, featured,
+      mainImage { asset->{ url }, alt },
       body[] {
         ...,
         markDefs[] { ... },
+        asset->{ url },
         _type == "block" => {
           ...,
           children[] { ... }
@@ -61,6 +63,22 @@ function renderBody(body) {
         <p key={i} style={{ fontSize:17, color:"#444", lineHeight:1.9, marginBottom:24 }}>
           {renderChildren(block.children)}
         </p>
+      )
+    }
+     if (block._type === 'image' && block.asset?.url) {
+      return (
+        <figure key={i} style={{ margin:"40px 0" }}>
+          <img
+            src={block.asset.url}
+            alt={block.alt || ''}
+            style={{ width:"100%", height:"auto", display:"block" }}
+          />
+          {block.caption && (
+            <figcaption style={{ fontSize:12, color:"#9a9590", textAlign:"center", marginTop:10, fontStyle:"italic" }}>
+              {block.caption}
+            </figcaption>
+          )}
+        </figure>
       )
     }
     return null
@@ -151,6 +169,17 @@ export default async function ArticlePage({ params }) {
           </div>
         </div>
       </div>
+
+            {/* Main Cover Image */}
+      {article.mainImage?.asset?.url && (
+        <div style={{ width:"100%", maxHeight:520, overflow:"hidden" }}>
+          <img
+            src={article.mainImage.asset.url}
+            alt={article.mainImage.alt || article.title}
+            style={{ width:"100%", height:520, objectFit:"cover", display:"block" }}
+          />
+        </div>
+      )}
 
       {/* Article Body */}
       <div style={{ maxWidth:800, margin:"0 auto", padding:"64px 40px" }}>
