@@ -45,15 +45,34 @@ function renderBody(body) {
       })
 
       if (block.style === 'h2') return (
-        <h2 key={i} style={{ fontFamily:"'Playfair Display',serif", fontSize:28, fontWeight:700, color:"#0d1b2a", margin:"40px 0 16px", letterSpacing:"-0.02em" }}>
-          {renderChildren(block.children)}
-        </h2>
-      )
+  <h2 key={i} style={{
+    fontFamily:"'Playfair Display',serif",
+    fontSize:32,
+    fontWeight:900,
+    color:"#0d1b2a",
+    margin:"56px 0 20px",
+    paddingTop:32,
+    borderTop:"2px solid rgba(13,27,42,0.08)",
+    letterSpacing:"-0.02em",
+    lineHeight:1.2
+  }}>
+    {renderChildren(block.children)}
+  </h2>
+)
       if (block.style === 'h3') return (
-        <h3 key={i} style={{ fontFamily:"'Playfair Display',serif", fontSize:22, fontWeight:700, color:"#0d1b2a", margin:"32px 0 12px" }}>
-          {renderChildren(block.children)}
-        </h3>
-      )
+  <h3 key={i} style={{
+    fontFamily:"'Playfair Display',serif",
+    fontSize:24,
+    fontWeight:700,
+    color:"#0d1b2a",
+    margin:"40px 0 16px",
+    paddingTop:8,
+    letterSpacing:"-0.01em",
+    lineHeight:1.25
+  }}>
+    {renderChildren(block.children)}
+  </h3>
+)
       if (block.style === 'blockquote') return (
         <blockquote key={i} style={{ borderLeft:"3px solid #c0392b", paddingLeft:24, margin:"32px 0", fontFamily:"'Playfair Display',serif", fontSize:20, fontStyle:"italic", color:"#555", lineHeight:1.7 }}>
           {renderChildren(block.children)}
@@ -66,21 +85,23 @@ function renderBody(body) {
       )
     }
      if (block._type === 'image' && block.asset?.url) {
-      return (
-        <figure key={i} style={{ margin:"40px 0" }}>
-          <img
-            src={block.asset.url}
-            alt={block.alt || ''}
-            style={{ width:"100%", height:"auto", display:"block" }}
-          />
-          {block.caption && (
-            <figcaption style={{ fontSize:12, color:"#9a9590", textAlign:"center", marginTop:10, fontStyle:"italic" }}>
-              {block.caption}
-            </figcaption>
-          )}
-        </figure>
-      )
-    }
+  const sizeMap = { small:'40%', medium:'70%', full:'100%' }
+  const width = sizeMap[block.size] || '100%'
+  return (
+    <figure key={i} style={{ margin:"40px auto", width, maxWidth:"100%" }}>
+      <img
+        src={block.asset.url}
+        alt={block.alt || ''}
+        style={{ width:"100%", height:"auto", display:"block" }}
+      />
+      {block.caption && (
+        <figcaption style={{ fontSize:12, color:"#9a9590", textAlign:"center", marginTop:10, fontStyle:"italic" }}>
+          {block.caption}
+        </figcaption>
+      )}
+    </figure>
+  )
+}
     return null
   })
 }

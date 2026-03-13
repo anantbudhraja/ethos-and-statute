@@ -87,21 +87,27 @@ export default {
   of: [
     { type: 'block' },
     {
-      type: 'image',
-      options: { hotspot: true },
-      fields: [
-        {
-          name: 'alt',
-          title: 'Alt Text',
-          type: 'string'
-        },
-        {
-          name: 'caption',
-          title: 'Caption',
-          type: 'string'
-        }
-      ]
+  type: 'image',
+  options: { hotspot: true },
+  fields: [
+    { name: 'alt', title: 'Alt Text', type: 'string' },
+    { name: 'caption', title: 'Caption', type: 'string' },
+    {
+      name: 'size',
+      title: 'Image Size',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Small (40% width)', value: 'small' },
+          { title: 'Medium (70% width)', value: 'medium' },
+          { title: 'Full Width', value: 'full' },
+        ],
+        layout: 'radio'
+      },
+      initialValue: 'full'
     }
+  ]
+}
   ]
 },
     {
