@@ -60,7 +60,7 @@ function renderBody(body) {
         </blockquote>
       )
       return (
-        <p key={i} style={{ fontSize:17, color:"#444", lineHeight:1.9, marginBottom:24 }}>
+        <p key={i} style={{ fontSize:18, color:"#333", lineHeight:1.85, marginBottom:28 }}>
           {renderChildren(block.children)}
         </p>
       )
@@ -145,8 +145,8 @@ export default async function ArticlePage({ params }) {
       </nav>
 
       {/* Article Header */}
-      <div style={{ background:"#0d1b2a", padding:"80px 40px" }}>
-        <div style={{ maxWidth:800, margin:"0 auto" }}>
+      <div style={{ background:"#0d1b2a", padding:"64px 40px" }}>
+  <div style={{ maxWidth:1000, margin:"0 auto" }}>
           <div style={{ fontSize:11, letterSpacing:"0.18em", textTransform:"uppercase", color:"#e74c3c", fontWeight:500, display:"flex", alignItems:"center", gap:8, marginBottom:24 }}>
             <Link href="/" style={{ color:"rgba(255,255,255,0.4)" }}>Home</Link>
             <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span>
@@ -182,8 +182,8 @@ export default async function ArticlePage({ params }) {
       )}
 
       {/* Article Body */}
-      <div style={{ maxWidth:800, margin:"0 auto", padding:"64px 40px" }}>
-        <div style={{ background:"white", padding:"64px", borderLeft:"1px solid rgba(13,27,42,0.08)", borderRight:"1px solid rgba(13,27,42,0.08)" }}>
+<div style={{ maxWidth:1000, margin:"0 auto", padding:"48px 40px" }}>
+  <div style={{ background:"white", padding:"48px 64px", borderLeft:"1px solid rgba(13,27,42,0.08)", borderRight:"1px solid rgba(13,27,42,0.08)" }}>
           {renderBody(article.body)}
           {(!article.body || article.body.length === 0) && (
             <p style={{ fontSize:18, color:"#9a9590", fontStyle:"italic" }}>No content yet.</p>
