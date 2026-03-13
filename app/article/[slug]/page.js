@@ -182,7 +182,7 @@ export default async function ArticlePage({ params }) {
       )}
 
       {/* Article Body */}
-<div style={{ maxWidth:1000, margin:"0 auto", padding:"48px 40px" }}>
+<div style={{ maxWidth:1200, margin:"0 auto", padding:"48px 40px" }}>
   <div style={{ background:"white", padding:"48px 64px", borderLeft:"1px solid rgba(13,27,42,0.08)", borderRight:"1px solid rgba(13,27,42,0.08)" }}>
           {renderBody(article.body)}
           {(!article.body || article.body.length === 0) && (
