@@ -19,91 +19,121 @@ async function getArticle(slug) {
   `, { slug })
 }
 
-function renderBody(body) {
-  return body?.map((block, i) => {
-    if (block._type === 'block') {
-      const renderChildren = (children) => children?.map((child, j) => {
-        if (child._type === 'span') {
-          const marks = child.marks || []
-          const linkMark = marks.find(m => block.markDefs?.find(d => d._key === m && d._type === 'link'))
-          if (linkMark) {
-            const def = block.markDefs.find(d => d._key === linkMark)
-            return (
-              <a key={j} href={def.href} target="_blank" rel="noopener noreferrer"
-                style={{ color:"#c0392b", textDecoration:"underline", textUnderlineOffset:3 }}>
-                {child.text}
-              </a>
-            )
-          }
-          let content = <span key={j}>{child.text}</span>
-          if (marks.includes('strong')) content = <strong key={j}>{child.text}</strong>
-          if (marks.includes('em')) content = <em key={j}>{child.text}</em>
-          if (marks.includes('underline')) content = <u key={j}>{child.text}</u>
-          return content
-        }
-        return null
-      })
-
-      if (block.style === 'h2') return (
-  <h2 key={i} style={{
-    fontFamily:"'Playfair Display',serif",
-    fontSize:32,
-    fontWeight:900,
-    color:"#0d1b2a",
-    margin:"56px 0 20px",
-    paddingTop:32,
-    borderTop:"2px solid rgba(13,27,42,0.08)",
-    letterSpacing:"-0.02em",
-    lineHeight:1.2
-  }}>
-    {renderChildren(block.children)}
-  </h2>
-)
-      if (block.style === 'h3') return (
-  <h3 key={i} style={{
-    fontFamily:"'Playfair Display',serif",
-    fontSize:24,
-    fontWeight:700,
-    color:"#0d1b2a",
-    margin:"40px 0 16px",
-    paddingTop:8,
-    letterSpacing:"-0.01em",
-    lineHeight:1.25
-  }}>
-    {renderChildren(block.children)}
-  </h3>
-)
-      if (block.style === 'blockquote') return (
-        <blockquote key={i} style={{ borderLeft:"3px solid #c0392b", paddingLeft:24, margin:"32px 0", fontFamily:"'Playfair Display',serif", fontSize:20, fontStyle:"italic", color:"#555", lineHeight:1.7 }}>
-          {renderChildren(block.children)}
-        </blockquote>
-      )
-      return (
-        <p key={i} style={{ fontSize:18, color:"#333", lineHeight:1.85, marginBottom:28 }}>
-          {renderChildren(block.children)}
-        </p>
-      )
+function renderChildren(children, block) {
+  return children?.map((child, j) => {
+    if (child._type === 'span') {
+      const marks = child.marks || []
+      const linkMark = marks.find(m => block.markDefs?.find(d => d._key === m && d._type === 'link'))
+      if (linkMark) {
+        const def = block.markDefs.find(d => d._key === linkMark)
+        return <a key={j} href={def.href} target="_blank" rel="noopener noreferrer" style={{ color:"#c0392b", textDecoration:"underline", textUnderlineOffset:3 }}>{child.text}</a>
+      }
+      if (marks.includes('strong')) return <strong key={j}>{child.text}</strong>
+      if (marks.includes('em')) return <em key={j}>{child.text}</em>
+      if (marks.includes('underline')) return <u key={j}>{child.text}</u>
+      return <span key={j}>{child.text}</span>
     }
-     if (block._type === 'image' && block.asset?.url) {
-  const sizeMap = { small:'40%', medium:'70%', full:'100%' }
-  const width = sizeMap[block.size] || '100%'
-  return (
-    <figure key={i} style={{ margin:"40px auto", width, maxWidth:"100%" }}>
-      <img
-        src={block.asset.url}
-        alt={block.alt || ''}
-        style={{ width:"100%", height:"auto", display:"block" }}
-      />
-      {block.caption && (
-        <figcaption style={{ fontSize:12, color:"#9a9590", textAlign:"center", marginTop:10, fontStyle:"italic" }}>
-          {block.caption}
-        </figcaption>
-      )}
-    </figure>
-  )
-}
     return null
   })
+}
+
+function renderBody(body) {
+  if (!body) return null
+  const elements = []
+  let i = 0
+
+  while (i < body.length) {
+    const block = body[i]
+
+    // Images
+    if (block._type === 'image' && block.asset?.url) {
+      const sizeMap = { small:'40%', medium:'70%', full:'100%' }
+      const width = sizeMap[block.size] || '100%'
+      elements.push(
+        <figure key={i} style={{ margin:"40px auto", width, maxWidth:"100%" }}>
+          <img src={block.asset.url} alt={block.alt || ''} style={{ width:"100%", height:"auto", display:"block" }} />
+          {block.caption && (
+            <figcaption style={{ fontSize:12, color:"#9a9590", textAlign:"center", marginTop:10, fontStyle:"italic" }}>
+              {block.caption}
+            </figcaption>
+          )}
+        </figure>
+      )
+      i++
+      continue
+    }
+
+    // Bullet lists — group consecutive bullet items into one <ul>
+    if (block._type === 'block' && block.listItem === 'bullet') {
+      const items = []
+      while (i < body.length && body[i]._type === 'block' && body[i].listItem === 'bullet') {
+        items.push(
+          <li key={i} style={{ fontSize:18, color:"#333", lineHeight:1.85, marginBottom:10, paddingLeft:4 }}>
+            {renderChildren(body[i].children, body[i])}
+          </li>
+        )
+        i++
+      }
+      elements.push(
+        <ul key={`ul-${i}`} style={{ paddingLeft:28, marginBottom:28, marginTop:8, listStyleType:"disc" }}>
+          {items}
+        </ul>
+      )
+      continue
+    }
+
+    // Numbered lists — group consecutive number items into one <ol>
+    if (block._type === 'block' && block.listItem === 'number') {
+      const items = []
+      while (i < body.length && body[i]._type === 'block' && body[i].listItem === 'number') {
+        items.push(
+          <li key={i} style={{ fontSize:18, color:"#333", lineHeight:1.85, marginBottom:10, paddingLeft:4 }}>
+            {renderChildren(body[i].children, body[i])}
+          </li>
+        )
+        i++
+      }
+      elements.push(
+        <ol key={`ol-${i}`} style={{ paddingLeft:28, marginBottom:28, marginTop:8, listStyleType:"decimal" }}>
+          {items}
+        </ol>
+      )
+      continue
+    }
+
+    // Regular blocks
+    if (block._type === 'block') {
+      if (block.style === 'h2') {
+        elements.push(
+          <h2 key={i} style={{ fontFamily:"'Playfair Display',serif", fontSize:32, fontWeight:900, color:"#0d1b2a", margin:"56px 0 20px", paddingTop:32, borderTop:"2px solid rgba(13,27,42,0.08)", letterSpacing:"-0.02em", lineHeight:1.2 }}>
+            {renderChildren(block.children, block)}
+          </h2>
+        )
+      } else if (block.style === 'h3') {
+        elements.push(
+          <h3 key={i} style={{ fontFamily:"'Playfair Display',serif", fontSize:24, fontWeight:700, color:"#0d1b2a", margin:"40px 0 16px", letterSpacing:"-0.01em", lineHeight:1.25 }}>
+            {renderChildren(block.children, block)}
+          </h3>
+        )
+      } else if (block.style === 'blockquote') {
+        elements.push(
+          <blockquote key={i} style={{ borderLeft:"3px solid #c0392b", paddingLeft:24, margin:"32px 0", fontFamily:"'Playfair Display',serif", fontSize:20, fontStyle:"italic", color:"#555", lineHeight:1.7 }}>
+            {renderChildren(block.children, block)}
+          </blockquote>
+        )
+      } else {
+        elements.push(
+          <p key={i} style={{ fontSize:18, color:"#333", lineHeight:1.85, marginBottom:28 }}>
+            {renderChildren(block.children, block)}
+          </p>
+        )
+      }
+    }
+
+    i++
+  }
+
+  return elements
 }
 
 export default async function ArticlePage({ params }) {
@@ -128,12 +158,12 @@ export default async function ArticlePage({ params }) {
         a { text-decoration:none; color:inherit; }
         .nav-link { display:flex; align-items:center; height:64px; padding:0 18px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500; color:#0d1b2a; border-bottom:2px solid transparent; transition:all 0.2s; }
         .nav-link:hover { color:#c0392b; border-bottom-color:#c0392b; }
+        ul, ol { list-style-position: outside; }
         @media (max-width: 768px) {
           nav { padding: 0 16px !important; overflow: hidden !important; }
           .desktop-nav { display: none !important; }
           h1 { font-size: 28px !important; }
-          div[style*="padding:64px"] { padding: 24px 16px !important; }
-          div[style*="max-width:800"] { padding: 24px 16px !important; }
+          div[style*="padding:48px 64px"] { padding: 24px 16px !important; }
         }
       `}</style>
 
@@ -167,7 +197,7 @@ export default async function ArticlePage({ params }) {
 
       {/* Article Header */}
       <div style={{ background:"#0d1b2a", padding:"64px 40px" }}>
-  <div style={{ maxWidth:1000, margin:"0 auto" }}>
+        <div style={{ maxWidth:1000, margin:"0 auto" }}>
           <div style={{ fontSize:11, letterSpacing:"0.18em", textTransform:"uppercase", color:"#e74c3c", fontWeight:500, display:"flex", alignItems:"center", gap:8, marginBottom:24 }}>
             <Link href="/" style={{ color:"rgba(255,255,255,0.4)" }}>Home</Link>
             <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span>
@@ -191,7 +221,7 @@ export default async function ArticlePage({ params }) {
         </div>
       </div>
 
-            {/* Main Cover Image */}
+      {/* Main Cover Image */}
       {article.mainImage?.asset?.url && (
         <div style={{ width:"100%", maxHeight:520, overflow:"hidden" }}>
           <img
@@ -203,8 +233,8 @@ export default async function ArticlePage({ params }) {
       )}
 
       {/* Article Body */}
-<div style={{ maxWidth:1200, margin:"0 auto", padding:"48px 40px" }}>
-  <div style={{ background:"white", padding:"48px 64px", borderLeft:"1px solid rgba(13,27,42,0.08)", borderRight:"1px solid rgba(13,27,42,0.08)" }}>
+      <div style={{ maxWidth:1200, margin:"0 auto", padding:"48px 40px" }}>
+        <div style={{ background:"white", padding:"48px 64px", borderLeft:"1px solid rgba(13,27,42,0.08)", borderRight:"1px solid rgba(13,27,42,0.08)" }}>
           {renderBody(article.body)}
           {(!article.body || article.body.length === 0) && (
             <p style={{ fontSize:18, color:"#9a9590", fontStyle:"italic" }}>No content yet.</p>
