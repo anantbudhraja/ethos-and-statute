@@ -6,6 +6,16 @@ export async function POST(request) {
   const resend = new Resend(process.env.RESEND_API_KEY)
   try {
     const { name, email } = await request.json()
+
+    // Add to audience list
+    await resend.contacts.create({
+      email,
+      firstName: name.split(' ')[0],
+      lastName: name.split(' ').slice(1).join(' ') || '',
+      audienceId: process.env.RESEND_AUDIENCE_ID,
+    })
+
+    // Send welcome email
     await resend.emails.send({
       from: 'Ethos & Statute <hello@ethosandstatute.com>',
       to: email,
@@ -25,7 +35,7 @@ export async function POST(request) {
               You're now part of a growing community of readers who believe the law is too important to leave to lawyers alone.
             </p>
             <p style="font-size:16px; color:#555; line-height:1.8; margin:0 0 32px;">
-              Every Tuesday and Friday, we'll send you sharp, accessible legal analysis — no jargon, no paywall, just clarity.
+              Every week, we'll send you sharp, accessible legal analysis — no jargon, no paywall, just clarity.
             </p>
             <a href="https://ethosandstatute.com" style="display:inline-block; background:#c0392b; color:white; font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:14px 28px; text-decoration:none;">
               Read Latest Articles →
@@ -39,8 +49,10 @@ export async function POST(request) {
         </div>
       `
     })
+
     return Response.json({ success: true })
   } catch (error) {
-    return Response.json({ error: 'Failed to send email' }, { status: 500 })
+    console.error(error)
+    return Response.json({ error: 'Failed to subscribe' }, { status: 500 })
   }
 }
